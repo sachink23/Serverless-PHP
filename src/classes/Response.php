@@ -16,6 +16,7 @@ class Response
     /**
      * @param int $statusCode
      * @param string $body
+     * @param array $headers
      */
     function __construct(int $statusCode, string $body, array $headers = array())
     {
