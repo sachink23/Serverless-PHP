@@ -66,7 +66,6 @@ class Request
     public function get_body(): string
     {
         // TODO: Implement decoding post requests and files using https://symfony.com/doc/current/introduction/http_fundamentals.html#requests-and-responses-in-symfony
-
         return self::$event["body"] ?? false;
 
     }

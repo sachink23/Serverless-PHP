@@ -1,18 +1,16 @@
 <?php
 namespace ServerlessPHP\Handler;
 
+use Bref\Event\Http\HttpResponse;
 use ServerlessPHP\HandlerInterface;
-use ServerlessPHP\Response;
 
 class Example2Handler implements HandlerInterface
 {
 
-    public function handler(array $_DATA): Response
+    public function handler(array $_DATA): HttpResponse
     {
-        return new Response(200,
-            json_encode([
-                "message" => "This is example 2"
-            ])
-        );
+        return new HttpResponse(json_encode([
+            "message" => "This is example 2"
+        ]));
     }
 }

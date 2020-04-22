@@ -1,17 +1,17 @@
 <?php
 namespace ServerlessPHP\Handler;
 
+use Bref\Event\Http\HttpResponse;
 use ServerlessPHP\HandlerInterface;
 use ServerlessPHP\Request;
-use ServerlessPHP\Response;
 
 class EventHandler implements HandlerInterface
 {
 
-    public function handler(array $_DATA): Response
+    public function handler(array $_DATA): HttpResponse
     {
         $event = Request::get();
-        return new Response(200, json_encode([
+        return new HttpResponse(json_encode([
             "event" => $event
         ]));
     }

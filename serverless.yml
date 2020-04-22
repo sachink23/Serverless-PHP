@@ -14,7 +14,7 @@ functions:
         handler: index.php
         description: 'Serverless-PHP - Framework based on https://bref.sh/ for building serverless PHP applications on AWS Lambda!'
         layers:
-            - ${bref:layer.php-72}
+            - ${bref:layer.php-73}
 
 # Exclude files from deployment
 package:
