@@ -21,5 +21,5 @@ use ServerlessPHP\Router;
  */
 return function ($event) {
     Request::set($event);
-    return Router::route_to($event["rawPath"]);
+    return Router::route_to($event["rawPath"])->toApiGatewayFormat();
 };
