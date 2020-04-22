@@ -1,0 +1,24 @@
+service: "Serverless-PHP"
+
+provider:
+    name: aws
+    region: ap-south-1
+    runtime: provided
+    versionFunctions: false
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    function:
+        handler: index.php
+        description: 'ServerlessPHP - Library based on https://bref.sh/ for building serverless PHP applications on AWS Lambda!'
+        layers:
+            - ${bref:layer.php-72}
+
+# Exclude files from deployment
+package:
+    exclude:
+        - 'tests/**'
+        - '.idea/**'
+        - '.gitignore'
