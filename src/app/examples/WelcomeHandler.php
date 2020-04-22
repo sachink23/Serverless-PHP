@@ -1,5 +1,8 @@
 <?php
+namespace ServerlessPHP\Handler;
 
+use ServerlessPHP\HandlerInterface;
+use ServerlessPHP\Response;
 
 class WelcomeHandler implements HandlerInterface
 {

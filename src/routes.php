@@ -1,4 +1,7 @@
 <?php
+
+use ServerlessPHP\Router;
+
 Router::set_routes([
     [
         "path" => "/",

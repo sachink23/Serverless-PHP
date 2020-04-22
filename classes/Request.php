@@ -1,5 +1,5 @@
 <?php
-
+namespace ServerlessPHP;
 /**
  * Class Request
  */

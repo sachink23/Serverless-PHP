@@ -13,6 +13,10 @@ require_once __DIR__ . '/classes/Response.php';
 
 require_once APP_ROOT . "/src/routes.php";
 
+use ServerlessPHP\Request;
+use ServerlessPHP\Response;
+use ServerlessPHP\Router;
+
 /**
  * @param $event
  * @return Response

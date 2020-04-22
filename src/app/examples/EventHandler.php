@@ -1,9 +1,9 @@
 <?php
-/**
- * Copyright (c) 2020.
- * Author: Sachin Kekarjawalekar
- * This example shows how to access event data passed by api gateway to the lambda
- */
+namespace ServerlessPHP\Handler;
+
+use ServerlessPHP\HandlerInterface;
+use ServerlessPHP\Request;
+use ServerlessPHP\Response;
 
 class EventHandler implements HandlerInterface
 {

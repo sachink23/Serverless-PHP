@@ -1,4 +1,8 @@
 <?php
+namespace ServerlessPHP\Handler;
+
+use ServerlessPHP\HandlerInterface;
+use ServerlessPHP\Response;
 
 class Example1Handler implements HandlerInterface
 {

@@ -1,4 +1,7 @@
 <?php
+namespace ServerlessPHP;
+
+use Exception;
 
 /**
  * Class Router
@@ -74,8 +77,8 @@ class Router
             if ($path == $route["path"]) {
                 try {
                     require_once APP_ROOT . "/src/app/" . $route["handler"] . ".php";
-                    $class = basename($route["handler"]);
-                    $handler = new $class;
+                    $class = "ServerlessPHP\\Handler\\" . basename($route["handler"]);
+                    $handler = new $class();
                     return $handler->handler($route["data"]);
 
                 } catch (Exception $e) {

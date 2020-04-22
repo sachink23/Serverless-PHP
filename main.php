@@ -1,9 +1,10 @@
 <?php
-
 /**
  * This file is executed every time after the required classes are loaded.
  * You can specify constants or global codes!
  */
+
+namespace ServerlessPHP;
 
 define("APP_ROOT", __DIR__);
 
