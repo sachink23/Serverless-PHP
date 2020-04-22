@@ -12,7 +12,7 @@ plugins:
 functions:
     function:
         handler: index.php
-        description: 'ServerlessPHP - Library based on https://bref.sh/ for building serverless PHP applications on AWS Lambda!'
+        description: 'Serverless-PHP - Framework based on https://bref.sh/ for building serverless PHP applications on AWS Lambda!'
         layers:
             - ${bref:layer.php-72}
 
