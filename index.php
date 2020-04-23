@@ -17,7 +17,7 @@ use ServerlessPHP\Router;
 
 /**
  * @param $event
- * @return \Bref\Event\Http\HttpResponse
+ * @return array
  */
 return function ($event) {
     Request::set($event);
