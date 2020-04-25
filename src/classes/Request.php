@@ -1,7 +1,6 @@
 <?php
 
 namespace ServerlessPHP;
-
 /**
  * Class Request
  */
@@ -13,9 +12,22 @@ class Request
     private static $event = [];
 
     /**
+     * @var string
+     */
+    private static $body;
+
+    /**
+     * @var array
+     */
+    private static $postParams;
+
+    private static $cookies;
+
+
+    /**
      * @param array $event
      */
-    public static function set(array $event): void
+    public function set(array $event)
     {
         self::$event = $event;
     }
@@ -23,51 +35,118 @@ class Request
     /**
      * @return array
      */
-    public static function get(): array
+    public function getCookies(): array
     {
-        return self::$event;
+        if (!isset(self::$cookies)) {
+            $cookies = self::$event["cookies"] ?? [];
+            self::$cookies = [];
+            foreach ($cookies as $cookie) {
+                $tmp = [];
+                parse_str($cookie, $tmp);
+                self::$cookies[] = $tmp;
+            }
+        }
+        return self::$cookies;
     }
 
-    public function get_headers(): array
+    /**
+     * @return array
+     */
+    public function getPost(): array
     {
-        return self::$event["headers"] ?? [];
+        if (!isset(self::$postParams)) {
+            self::$postParams = [];
+            parse_str(self::getBody(), self::$postParams);
+        }
+        return self::$postParams;
     }
 
-    public function get_cookies(): array
+    /**
+     * @return string
+     */
+    public function getBody(): string
     {
-        return self::$event["headers"] ?? [];
+        if (isset(self::$body)) {
+            return self::$body;
+        }
+        if (!array_key_exists("body", self::$event)) {
+            return self::$body = "";
+        }
+        if (self::$event["isBase64Encoded"]) {
+            return self::$body = base64_decode(self::$event["body"]);
+        } else {
+            return self::$body = self::$event["body"];
+        }
     }
 
-    public function get_query_params(): array
+    /**
+     * @return array
+     */
+    public function getQueryParams(): array
     {
         return self::$event["queryStringParameters"] ?? [];
     }
 
-    public function get_method(): string
+    /**
+     * @return array
+     */
+    public function getHeaders(): array
     {
-        return self::$event["http"]["method"] ?? false;
+        return self::$event["headers"] ?? [];
     }
 
-    public function get_remote_addr(): string
+    /**
+     * @return string
+     */
+    public function getMethod(): string
     {
-        return self::$event["http"]["sourceIp"] ?? false;
+        return self::$event["requestContext"]["http"]["method"] ?? false;
     }
 
-    public function get_user_agent(): string
+    /**
+     * @return string
+     */
+    public function getPath(): string
     {
-        return self::$event["http"]["userAgent"] ?? false;
+        return (self::$event["rawPath"] ?? self::$event["requestContext"]["http"]["path"]) ?? false;
     }
 
-    public function get_protocol(): string
+    public function getHostName(): string
     {
-        return self::$event["http"]["protocol"] ?? false;
+        return self::$event["requestContext"]["domainName"] ?? false;
     }
 
-    public function get_body(): string
+    /**
+     * @return string
+     */
+    public function getUserAgent(): string
     {
-        // TODO: Implement decoding post requests and files using https://symfony.com/doc/current/introduction/http_fundamentals.html#requests-and-responses-in-symfony
-        return self::$event["body"] ?? false;
+        return self::$event["requestContext"]["http"]["userAgent"] ?? false;
+    }
 
+    /**
+     * @return string
+     */
+    public function getRemoteIp(): string
+    {
+        return self::$event["requestContext"]["http"]["sourceIp"] ?? false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProtocol(): string
+    {
+        return self::$event["requestContext"]["http"]["protocol"] ?? false;
+    }
+
+    /**
+     * @return array
+     */
+
+    public function toArray(): array
+    {
+        return self::$event;
     }
 
 }

@@ -2,7 +2,7 @@
 
 use ServerlessPHP\Router;
 
-Router::set_routes([
+Router::setRoutes([
     [
         "path" => "/",
         "handler" => "examples/WelcomeHandler"

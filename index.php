@@ -20,6 +20,7 @@ use ServerlessPHP\Router;
  * @return array
  */
 return function ($event) {
-    Request::set($event);
-    return Router::route_to($event["rawPath"])->toApiGatewayFormat();
+    $request = new Request();
+    $request->set($event);
+    return Router::routeTo($request->getPath())->toApiGatewayFormat();
 };

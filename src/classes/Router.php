@@ -22,10 +22,10 @@ class Router
      * @param array $routes
      * @return bool
      */
-    public static function set_routes(array $routes)
+    public static function setRoutes(array $routes)
     {
         foreach ($routes as $route) {
-            if (!self::set_route($route)) {
+            if (!self::setRoute($route)) {
                 return false;
             }
         }
@@ -36,7 +36,7 @@ class Router
      * @param array $route
      * @return bool
      */
-    public static function set_route(array $route)
+    public static function setRoute(array $route)
     {
         if (array_key_exists("path", $route)) {
             foreach (self::$routes as $rt) {
@@ -69,10 +69,10 @@ class Router
      * @param $path
      * @return HttpResponse
      */
-    public static function route_to($path): HttpResponse
+    public static function routeTo($path): HttpResponse
     {
         if (self::$error != null) {
-            return self::show_error();
+            return self::showError();
         }
         foreach (self::$routes as $route) {
             if ($path == $route["path"]) {
@@ -84,7 +84,7 @@ class Router
 
                 } catch (Exception $e) {
                     self::$error = $e->getMessage();
-                    return self::show_error();
+                    return self::showError();
                 }
             }
         }
@@ -103,7 +103,7 @@ class Router
     /**
      * @return HttpResponse
      */
-    private static function show_error(): HttpResponse
+    private static function showError(): HttpResponse
     {
         if (SHOW_ERRORS && self::$error != null) {
             return new HttpResponse(
