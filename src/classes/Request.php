@@ -21,6 +21,9 @@ class Request
      */
     private static $postParams;
 
+    /**
+     * @var
+     */
     private static $cookies;
 
 
@@ -111,6 +114,9 @@ class Request
         return (self::$event["rawPath"] ?? self::$event["requestContext"]["http"]["path"]) ?? false;
     }
 
+    /**
+     * @return string
+     */
     public function getHostName(): string
     {
         return self::$event["requestContext"]["domainName"] ?? false;
