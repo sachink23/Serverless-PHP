@@ -1,7 +1,20 @@
 {
+	"name": "sachink23/serverless-php",
+	"type": "template",
+	"description": "Framework based on https://bref.sh/ for building serverless PHP applications on AWS Lambda",
+	"keywords": ["template"],
+	"homepage": "https://serverless-php.sachink.com",
+	"license": "MIT",
+	"authors": [
+	{
+	    "name": "Sachin Kekarjawalekar",
+	    "email": "kekarjawalekarsachin@gmail.com",
+	    "role": "Developer"
+	}
+	]
 	"require": {
-      "php": "^7.3",
-      "ext-json": "*",
-      "bref/bref": "^0.5.23"
-    }
+	      "php": "^7.3",
+	      "ext-json": "*",
+	      "bref/bref": "^0.5.23"
+	}
 }
