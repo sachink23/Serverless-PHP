@@ -11,7 +11,7 @@
 	    "email": "kekarjawalekarsachin@gmail.com",
 	    "role": "Developer"
 	}
-	]
+	],
 	"require": {
 	      "php": "^7.3",
 	      "ext-json": "*",
