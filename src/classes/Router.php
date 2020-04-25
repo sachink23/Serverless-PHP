@@ -1,7 +1,6 @@
 <?php
 namespace ServerlessPHP;
 
-use Bref\Event\Http\HttpResponse;
 use Exception;
 
 /**
@@ -67,9 +66,9 @@ class Router
 
     /**
      * @param $path
-     * @return HttpResponse
+     * @return Response
      */
-    public static function routeTo($path): HttpResponse
+    public static function routeTo($path): Response
     {
         if (self::$error != null) {
             return self::showError();
@@ -88,43 +87,40 @@ class Router
                 }
             }
         }
-        return new HttpResponse(
+        return Response::setResponse(
             json_encode([
                 "error" => true,
                 "data" => [
                     "message" => "Resource Not Found!"
                 ]
             ]),
-            [],
-            404
+            404,
         );
     }
 
     /**
-     * @return HttpResponse
+     * @return Response
      */
-    private static function showError(): HttpResponse
+    private static function showError(): Response
     {
         if (SHOW_ERRORS && self::$error != null) {
-            return new HttpResponse(
+            return Response::setResponse(
                 json_encode([
                     "error" => "true",
                     "data" => [
                         "message" => self::$error
                     ]
                 ]),
-                [],
-                500
+                500,
             );
         } else {
-            return new HttpResponse(
+            return Response::setResponse(
                 json_encode([
                     "error" => "true",
                     "data" => [
                         "message" => "Internal Server Error!"
                     ]
                 ]),
-                [],
                 500
             );
         }
