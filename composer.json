@@ -1,5 +1,6 @@
 {
 	"name": "sachink23/serverless-php",
+	"version": "v0.01-alpha",
 	"type": "template",
 	"description": "Framework based on https://bref.sh/ for building serverless PHP applications on AWS Lambda",
 	"keywords": ["template"],
