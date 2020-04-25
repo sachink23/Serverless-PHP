@@ -28,4 +28,5 @@ return function ($event) {
     $response = new Response();
     $response->addHeader("Content-type", "application/json");
     return Router::routeTo($request->getPath())->toApiGatewayFormat();
+
 };

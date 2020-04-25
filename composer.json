@@ -2,7 +2,6 @@
 	"require": {
       "php": "^7.3",
       "ext-json": "*",
-      "bref/bref": "^0.5.23",
-      "symfony/http-foundation": "^5.0"
+      "bref/bref": "^0.5.23"
     }
 }

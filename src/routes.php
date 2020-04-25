@@ -4,8 +4,8 @@ use ServerlessPHP\Router;
 
 Router::setRoutes([
     [
-        "path" => "/event",
-        "handler" => "examples/EventHandler"
+        "path" => "/demo",
+        "handler" => "DemoHandler"
     ]
 ]);
 
