@@ -5,6 +5,7 @@
 	"description": "Framework based on https://bref.sh/ for building serverless PHP applications on AWS Lambda",
 	"keywords": ["template"],
 	"homepage": "https://serverless-php.sachink.com",
+	"minimum-stability": "dev",
 	"license": "MIT",
 	"authors": [
 	{
