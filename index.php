@@ -23,10 +23,13 @@ use ServerlessPHP\Router;
  */
 return function ($event) {
 
+    $router = new Router();
     $request = new Request();
-    $request->set($event);
     $response = new Response();
+
+    $request->set($event);
     $response->addHeader("Content-type", "application/json");
-    return Router::routeTo($request->getPath())->toApiGatewayFormat();
+
+    return $router->routeTo($request->getPath())->toApiGatewayFormat();
 
 };

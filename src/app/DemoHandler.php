@@ -9,7 +9,10 @@ use ServerlessPHP\Response;
 class DemoHandler implements HandlerInterface
 {
 
-    public function handler(array $_DATA): Response
+    /**
+     * @inheritDoc
+     */
+    public function handler(): Response
     {
         $request = new Request();
         $response = new Response();
@@ -31,7 +34,6 @@ class DemoHandler implements HandlerInterface
             ])
         );
         $response->setStatusCode(200);
-        $response->addHeader("Content-type", "application/json");
 
         return $response;
     }

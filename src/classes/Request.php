@@ -3,6 +3,7 @@
 namespace ServerlessPHP;
 /**
  * Class Request
+ * To handle the request sent by the end user to application through API Gateway
  */
 class Request
 {
@@ -28,7 +29,9 @@ class Request
 
 
     /**
-     * @param array $event
+     * Sets API Gateway Proxy Event
+     * @param array $event Array received from API Gateway
+     * @link https://github.com/awsdocs/aws-lambda-developer-guide/blob/master/sample-apps/nodejs-apig/event.json
      */
     public function set(array $event)
     {
@@ -36,7 +39,7 @@ class Request
     }
 
     /**
-     * @return array
+     * @return array    Cookies received in the request
      */
     public function getCookies(): array
     {
@@ -53,7 +56,9 @@ class Request
     }
 
     /**
-     * @return array
+     * Currently doesn't support multipart-form-data
+     * @return array    Parameters posted in the request if they are posted as content-type: x-www-form-urlencoded or text
+     * ["param_name", "value"]
      */
     public function getPost(): array
     {
@@ -65,7 +70,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   RAW Request body
      */
     public function getBody(): string
     {
@@ -83,7 +88,7 @@ class Request
     }
 
     /**
-     * @return array
+     * @return array    Array of query parameters sent with url ["param_name", "value"]
      */
     public function getQueryParams(): array
     {
@@ -91,7 +96,7 @@ class Request
     }
 
     /**
-     * @return array
+     * @return array    Request Headers ["header_name1"=>"header_value1", ....]
      */
     public function getHeaders(): array
     {
@@ -99,7 +104,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   Request Method
      */
     public function getMethod(): string
     {
@@ -107,7 +112,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   Request URI/Path
      */
     public function getPath(): string
     {
@@ -115,7 +120,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   Request Hostname
      */
     public function getHostName(): string
     {
@@ -123,7 +128,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   User Agent
      */
     public function getUserAgent(): string
     {
@@ -139,7 +144,7 @@ class Request
     }
 
     /**
-     * @return string
+     * @return string   Request Protocol
      */
     public function getProtocol(): string
     {
@@ -147,7 +152,8 @@ class Request
     }
 
     /**
-     * @return array
+     * @return array    Array received from API Gateway
+     * @link https://github.com/awsdocs/aws-lambda-developer-guide/blob/master/sample-apps/nodejs-apig/event.json
      */
 
     public function toArray(): array

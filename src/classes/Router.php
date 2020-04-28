@@ -5,11 +5,12 @@ use Exception;
 
 /**
  * Class Router
+ * Manages Routing
  */
 class Router
 {
     /**
-     * @var array
+     * @var array   defined static so that routes can be accessed anywhere
      */
     public static $routes = array();
     /**
@@ -18,13 +19,13 @@ class Router
     private static $error = null;
 
     /**
-     * @param array $routes
+     * @param array $routes Array of routes
      * @return bool
      */
-    public static function setRoutes(array $routes)
+    public function setRoutes(array $routes)
     {
         foreach ($routes as $route) {
-            if (!self::setRoute($route)) {
+            if (!$this->setRoute($route)) {
                 return false;
             }
         }
@@ -32,10 +33,10 @@ class Router
     }
 
     /**
-     * @param array $route
-     * @return bool
+     * @param array $route Array to set single route ["path"=>"string_path", "handler"=>"path/to/HandlerClass"]
+     * @return bool True if successfully sets Route else false, and logs error to self::$error
      */
-    public static function setRoute(array $route)
+    public function setRoute(array $route)
     {
         if (array_key_exists("path", $route)) {
             foreach (self::$routes as $rt) {
@@ -57,9 +58,6 @@ class Router
             self::$error = "Route Path Not Set For A Route " . $route["path"];
             return false;
         }
-        if (!array_key_exists("data", $route)) {
-            $route["data"] = array();
-        }
         array_push(self::$routes, $route);
         return true;
     }
@@ -68,10 +66,10 @@ class Router
      * @param $path
      * @return Response
      */
-    public static function routeTo($path): Response
+    public function routeTo($path): Response
     {
         if (self::$error != null) {
-            return self::showError();
+            return $this->showError();
         }
         foreach (self::$routes as $route) {
             if ($path == $route["path"]) {
@@ -79,15 +77,16 @@ class Router
                     require_once APP_ROOT . "/src/app/" . $route["handler"] . ".php";
                     $class = "ServerlessPHP\\Handler\\" . basename($route["handler"]);
                     $handler = new $class();
-                    return $handler->handler($route["data"]);
+                    return $handler->handler();
 
                 } catch (Exception $e) {
                     self::$error = $e->getMessage();
-                    return self::showError();
+                    return $this->showError();
                 }
             }
         }
-        return Response::setResponse(
+        $resp = new Response();
+        return $resp->setResponse(
             json_encode([
                 "error" => true,
                 "data" => [
@@ -99,12 +98,14 @@ class Router
     }
 
     /**
-     * @return Response
+     * @return Response If any exception occurs returns 500 Response depending on the set value of SHOW_ERRORS
      */
-    private static function showError(): Response
+    private function showError(): Response
     {
+        $resp = new Response();
         if (SHOW_ERRORS && self::$error != null) {
-            return Response::setResponse(
+
+            return $resp->setResponse(
                 json_encode([
                     "error" => "true",
                     "data" => [
@@ -114,7 +115,7 @@ class Router
                 500,
             );
         } else {
-            return Response::setResponse(
+            return $resp->setResponse(
                 json_encode([
                     "error" => "true",
                     "data" => [

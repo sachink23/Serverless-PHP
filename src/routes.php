@@ -1,8 +1,22 @@
 <?php
+/**
+ * Set your application routes here
+ * @example
+ * $route = [
+ *              "path" => "http_path" // Case sensitive,
+ *              "handler" => "path/to/HandlerClass" // - Path inside src/app/ - Dont Include .php extension
+ *          ]
+ */
 
 use ServerlessPHP\Router;
 
-Router::setRoutes([
+$router = new Router();
+
+$router->setRoutes([
+    [
+        "path" => "/",
+        "handler" => "WelcomeHandler"
+    ],
     [
         "path" => "/demo",
         "handler" => "DemoHandler"
