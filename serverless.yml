@@ -22,3 +22,6 @@ package:
         - 'tests/**'
         - '.idea/**'
         - '.gitignore'
+        - 'sls'
+        - 'cli/**'
+        - 'tests/**'
