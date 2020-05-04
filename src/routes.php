@@ -15,7 +15,7 @@ $router = new Router();
 $router->setRoutes([
     [
         "path" => "/",
-        "handler" => "WelcomeHandler"
+        "handler" => "welcome/WelcomeHandler"
     ],
     [
         "path" => "/demo",

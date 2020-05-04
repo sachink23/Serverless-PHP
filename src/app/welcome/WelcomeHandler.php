@@ -18,7 +18,7 @@ class WelcomeHandler implements HandlerInterface
         $body = json_encode([
             "message" => "Serverless-PHP Welcome's You!",
             "github" => "https://github.com/sachink23/serverless-php",
-            "docs" => "https://serverless-php.sachink23.php",
+            "docs" => "https://serverless-php.sachink.com",
             "author" => "https://www.linkedin.com/in/sachin-kekarjawalekar-755914b5/",
             "demo" => "https://serverless-php-api.sachink.com/demo"
         ]);

@@ -5,12 +5,6 @@ declare(strict_types=1);
 require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/main.php';
-
-require_once __DIR__ . '/src/interfaces/HandlerInterface.php';
-require_once __DIR__ . '/src/classes/Router.php';
-require_once __DIR__ . '/src/classes/Response.php';
-require_once __DIR__ . '/src/classes/Request.php';
-
 require_once APP_ROOT . "/src/routes.php";
 
 use ServerlessPHP\Request;
