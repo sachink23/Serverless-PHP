@@ -19,7 +19,11 @@ $router->setRoutes([
     ],
     [
         "path" => "/demo",
-        "handler" => "DemoHandler"
+        "handler" => "DemoHandler",
+        "data" => [
+            "some_key" => "some_value",
+            "some_another_key" => "some_another_value"
+        ]
     ]
 ]);
 

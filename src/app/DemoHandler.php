@@ -8,6 +8,18 @@ use ServerlessPHP\Response;
 
 class DemoHandler implements HandlerInterface
 {
+    /**
+     * @var array   This is an array from $route["data"]
+     */
+    private $r_data;
+
+    /**
+     * @inheritDoc
+     */
+    public function __construct(array $_DATA)
+    {
+        $this->r_data = $_DATA;
+    }
 
     /**
      * @inheritDoc
@@ -30,6 +42,7 @@ class DemoHandler implements HandlerInterface
                     "client_ip" => $request->getRemoteIp(),
                     "user_agent" => $request->getUserAgent(),
                     "path" => $request->getPath(),
+                    "data" => $this->r_data
                 ]
             ])
         );

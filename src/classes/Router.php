@@ -58,6 +58,14 @@ class Router
             self::$error = "Route Path Not Set For A Route " . $route["path"];
             return false;
         }
+        if (!array_key_exists("data", $route)) {
+            $route["data"] = array();
+        } else {
+            if (!is_array($route["data"])) {
+                self::$error = "'data' must be an array in route " . $route["path"];
+                return false;
+            }
+        }
         array_push(self::$routes, $route);
         return true;
     }
@@ -76,7 +84,7 @@ class Router
                 try {
                     require_once APP_ROOT . "/src/app/" . $route["handler"] . ".php";
                     $class = "ServerlessPHP\\Handler\\" . basename($route["handler"]);
-                    $handler = new $class();
+                    $handler = new $class($route["data"]);
                     return $handler->handler();
 
                 } catch (Exception $e) {
